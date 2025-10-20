@@ -58,6 +58,18 @@ function setSubstitutionMode(mode) {
 		inputField.placeholder = "復号したい文字列を入力してください...";
 	}
 	processSubstitution();
+
+	// 対応表の矢印をモードに応じて上下に切り替える（暗号化: ↓, 復号: ↑）
+	try {
+		const keyArrowEl = document.getElementById("key-display-text");
+		if (keyArrowEl) {
+			const arrowChar = mode === "encrypt" ? "\u2193" : "\u2191"; // ↓ または ↑
+			keyArrowEl.textContent = Array(26).fill(arrowChar).join(" ");
+		}
+	} catch (e) {
+		// DOM が未準備の場合は無視
+		console.debug("key-display-text update skipped:", e);
+	}
 }
 
 // --- RSA暗号機能追加 ---
