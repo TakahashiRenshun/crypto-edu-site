@@ -122,10 +122,14 @@ textarea {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .mode-btn {
-    padding: 10px 20px;
+    /* 横並び時に左右それぞれ占有できるようにする */
+    flex: 1 1 50%;
+    min-width: 0; /* flex 要素内での折り返しを防ぐ */
+    padding: 14px 12px;
     border: 2px solid #667eea;
     background: white;
     color: #667eea;
@@ -133,6 +137,8 @@ textarea {
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
+    text-align: center;
+    font-size: 1.05rem;
 }
 
 .mode-btn.active {
@@ -289,5 +295,14 @@ textarea {
 
     .button-group {
         flex-direction: column;
+    }
+
+    /* モバイルではボタンを縦並びにしてタップしやすくする */
+    .mode-toggle {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .mode-btn {
+        width: 100%;
     }
 }
