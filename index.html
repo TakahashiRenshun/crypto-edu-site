@@ -27,17 +27,17 @@
             </div>
 
             <div class="input-group">
-                <label for="caesar-input" id="caesar-input-label">平文（暗号化したい文字列）:</label>
-                <textarea id="caesar-input" placeholder="暗号化したい文字列を入力してください..." oninput="processCaesar()"></textarea>
-            </div>
-
-            <div class="input-group">
                 <label for="shift">鍵（ずらす文字数）:</label>
                 <input type="number" id="shift" class="shift-input" min="1" max="25" value="3"
                     oninput="processCaesar()">
                 <div class="button-group">
                     <button class="btn" onclick="resetCaesar()">リセット</button>
                 </div>
+            </div>
+
+            <div class="input-group">
+                <label for="caesar-input" id="caesar-input-label">平文（暗号化したい文字列）:</label>
+                <textarea id="caesar-input" placeholder="暗号化したい文字列を入力してください..." oninput="processCaesar()"></textarea>
             </div>
 
             <div class="input-group">
@@ -64,12 +64,6 @@
             </div>
 
             <div class="input-group">
-                <label for="substitution-input" id="substitution-input-label">平文（暗号化したい文字列）:</label>
-                <textarea id="substitution-input" placeholder="暗号化したい文字列を入力してください..."
-                    oninput="processSubstitution()"></textarea>
-            </div>
-
-            <div class="input-group">
                 <!-- <label for="substitution-key">暗号化キー（26文字のアルファベット）:</label> -->
                 <input hidden type="text" id="substitution-key" class="substitution-key"
                     placeholder="QWERTYUIOPASDFGHJKLZXCVBNM" maxlength="26" oninput="processSubstitution()">
@@ -89,6 +83,11 @@
                 <span id="alphabet-display">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</span><br>
                 <span id="key-display-text">↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓</span><br>
                 <span id="substitution-display">Q W E R T Y U I O P A S D F G H J K L Z X C V B N M</span>
+            </div>
+
+            <div class="input-group">
+                <label for="substitution-input" id="substitution-input-label">平文（暗号化したい文字列）:</label>
+                <textarea id="substitution-input" placeholder="暗号化したい文字列を入力してください..." oninput="processSubstitution()"></textarea>
             </div>
 
             <div class="input-group">
@@ -113,10 +112,7 @@
                 <button class="mode-btn active" onclick="setScytaleMode('encrypt')">暗号化</button>
                 <button class="mode-btn" onclick="setScytaleMode('decrypt')">復号</button>
             </div>
-            <div class="input-group">
-                <label for="scytale-input" id="scytale-input-label">平文（暗号化したい文字列）:</label>
-                <textarea id="scytale-input" placeholder="暗号化したい文字列を入力してください..." oninput="processScytale()"></textarea>
-            </div>
+
             <div class="input-group">
                 <label for="scytale-rows">鍵（2-20）:</label>
                 <input type="number" id="scytale-rows" class="shift-input" min="2" max="20" value="4"
@@ -125,6 +121,12 @@
                     <button class="btn" onclick="resetScytale()">リセット</button>
                 </div>
             </div>
+
+            <div class="input-group">
+                <label for="scytale-input" id="scytale-input-label">平文（暗号化したい文字列）:</label>
+                <textarea id="scytale-input" placeholder="暗号化したい文字列を入力してください..." oninput="processScytale()"></textarea>
+            </div>
+
             <!-- <div class="output-section"> -->
                 <div class="input-group">
                     <label id="scytale-output-label">暗号文（暗号化された文字列）:</label>
@@ -148,10 +150,7 @@
                 <button class="mode-btn active" onclick="setRsaMode('encrypt')">暗号化</button>
                 <button class="mode-btn" onclick="setRsaMode('decrypt')">復号</button>
             </div>
-            <div class="input-group">
-                <label for="rsa-input" id="rsa-input-label">平文（暗号化したい文字列）:</label>
-                <textarea id="rsa-input" placeholder="暗号化したい文字列を入力してください..." oninput="processRsa()"></textarea>
-            </div>
+
             <div class="input-group">
                 <label for="rsa-public-key">公開鍵 (n, e):</label>
                 <input type="text" id="rsa-public-key" placeholder="例: 3233,17" oninput="processRsa()">
@@ -165,6 +164,12 @@
                     <button class="btn" id="toggle-rsa-key-visibility" onclick="toggleRsaKeyVisibility()">表示</button>
                 </div>
             </div>
+
+            <div class="input-group">
+                <label for="rsa-input" id="rsa-input-label">平文（暗号化したい文字列）:</label>
+                <textarea id="rsa-input" placeholder="暗号化したい文字列を入力してください..." oninput="processRsa()"></textarea>
+            </div>
+
             <div class="input-group">
                 <label id="rsa-output-label">暗号文（暗号化された文字列）:</label>
                 <textarea id="rsa-output" class="output-text" readonly placeholder="ここに結果が表示されます" rows="4"></textarea>
