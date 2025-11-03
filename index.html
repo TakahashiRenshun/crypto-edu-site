@@ -32,7 +32,7 @@
             </div>
 
             <div class="input-group">
-                <label for="shift">ずらす文字数（1-25）:</label>
+                <label for="shift">鍵（ずらす文字数）:</label>
                 <input type="number" id="shift" class="shift-input" min="1" max="25" value="3"
                     oninput="processCaesar()">
                 <div class="button-group">
@@ -70,16 +70,16 @@
             </div>
 
             <div class="input-group">
-                <label for="substitution-key">暗号化キー（26文字のアルファベット）:</label>
-                <input type="text" id="substitution-key" class="substitution-key"
+                <!-- <label for="substitution-key">暗号化キー（26文字のアルファベット）:</label> -->
+                <input hidden type="text" id="substitution-key" class="substitution-key"
                     placeholder="QWERTYUIOPASDFGHJKLZXCVBNM" maxlength="26" oninput="processSubstitution()">
                 <div class="input-group">
-                    <label for="key-number">キー番号（1-300）:</label>
+                    <label for="key-number">鍵（1-300）:</label>
                     <input type="number" id="key-number" class="shift-input" min="1" max="300" value="1"
                         oninput="selectKeyByNumber()">
                 </div>
                 <div class="button-group">
-                    <button class="btn-secondary btn" onclick="selectKeyByNumber()">キー選択</button>
+                    <!-- <button class="btn-secondary btn" onclick="selectKeyByNumber()">キー選択</button> -->
                     <button class="btn" onclick="resetSubstitution()">リセット</button>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 <h3>📝 換字式暗号の仕組み</h3>
                 <p>
                     各文字を別の文字にで置き換える暗号方式です。<br>
-                    26文字のアルファベットを別の順序に並べたキーを使用します。<br>
+                    26文字のアルファベットを別の順序に並べた対応表を使用します。<br>
                     <strong>例:</strong> A→Q, B→W, C→E, D→R, E→T...<br>
                     <strong>平文:</strong> "HELLO" → <strong>暗号文:</strong> "ITSSG"
                 </p>
@@ -118,7 +118,7 @@
                 <textarea id="scytale-input" placeholder="暗号化したい文字列を入力してください..." oninput="processScytale()"></textarea>
             </div>
             <div class="input-group">
-                <label for="scytale-rows">棒の周長（行数）:</label>
+                <label for="scytale-rows">鍵（2-20）:</label>
                 <input type="number" id="scytale-rows" class="shift-input" min="2" max="20" value="4"
                     oninput="processScytale()">
                 <div class="button-group">
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="input-group">
-                <label id="rsa-output-label">出力:</label>
+                <label id="rsa-output-label">暗号文（暗号化された文字列）:</label>
                 <textarea id="rsa-output" class="output-text" readonly placeholder="ここに結果が表示されます" rows="4"></textarea>
             </div>
             <div class="example">
