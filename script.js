@@ -125,7 +125,7 @@ function processCaesar() {
 	} else {
 		result = caesarCipher(input, -shift);
 	}
-	document.getElementById("caesar-output").textContent =
+	document.getElementById("caesar-output").value =
 		result ||
 		(caesarMode === "encrypt"
 			? "ここに暗号化された文字列が表示されます"
@@ -156,7 +156,7 @@ function caesarCipher(text, shift) {
 function resetCaesar() {
 	document.getElementById("caesar-input").value = "";
 	document.getElementById("shift").value = "3";
-	document.getElementById("caesar-output").textContent =
+	document.getElementById("caesar-output").value =
 		caesarMode === "encrypt"
 			? "ここに暗号化された文字列が表示されます"
 			: "ここに復号された文字列が表示されます";
@@ -167,18 +167,18 @@ function processSubstitution() {
 	const key = document.getElementById("substitution-key").value.toUpperCase();
 	updateKeyDisplay(key);
 	if (key.length !== 26) {
-		document.getElementById("substitution-output").textContent =
+		document.getElementById("substitution-output").value =
 			"キーは26文字のアルファベットで入力してください";
 		return;
 	}
 	const uniqueChars = new Set(key);
 	if (uniqueChars.size !== 26) {
-		document.getElementById("substitution-output").textContent =
+		document.getElementById("substitution-output").value =
 			"キーに重複する文字があります";
 		return;
 	}
 	if (!/^[A-Z]{26}$/.test(key)) {
-		document.getElementById("substitution-output").textContent =
+		document.getElementById("substitution-output").value =
 			"キーはアルファベットのみで入力してください";
 		return;
 	}
@@ -188,7 +188,7 @@ function processSubstitution() {
 	} else {
 		result = substitutionDecipher(input, key);
 	}
-	document.getElementById("substitution-output").textContent =
+	document.getElementById("substitution-output").value =
 		result ||
 		(substitutionMode === "encrypt"
 			? "ここに暗号化された文字列が表示されます"
@@ -252,7 +252,7 @@ function selectKeyByNumber() {
 		document.getElementById("substitution-key").value = selectedKey;
 		processSubstitution();
 	} else {
-		document.getElementById("substitution-output").textContent =
+		document.getElementById("substitution-output").value =
 			"キー番号は1-300の範囲で入力してください";
 	}
 }
@@ -284,7 +284,7 @@ function processRsa() {
 	let result = "";
 	if (rsaMode === "encrypt") {
 		if (pub.length !== 2 || isNaN(pub[0]) || isNaN(pub[1])) {
-			document.getElementById("rsa-output").textContent =
+			document.getElementById("rsa-output").value =
 				"公開鍵(n,e)を正しく入力してください";
 			return;
 		}
@@ -293,7 +293,7 @@ function processRsa() {
 		result = rsaEncrypt(input, n, e);
 	} else {
 		if (priv.length !== 2 || isNaN(priv[0]) || isNaN(priv[1])) {
-			document.getElementById("rsa-output").textContent =
+			document.getElementById("rsa-output").value =
 				"秘密鍵(n,d)を正しく入力してください";
 			return;
 		}
@@ -301,7 +301,7 @@ function processRsa() {
 		d = BigInt(priv[1]);
 		result = rsaDecrypt(input, n, d);
 	}
-	document.getElementById("rsa-output").textContent =
+	document.getElementById("rsa-output").value =
 		result ||
 		(rsaMode === "encrypt"
 			? "ここに暗号化された文字列が表示されます"
@@ -368,7 +368,7 @@ function resetRsa() {
 	document.getElementById("rsa-input").value = "";
 	document.getElementById("rsa-public-key").value = "";
 	document.getElementById("rsa-private-key").value = "";
-	document.getElementById("rsa-output").textContent =
+	document.getElementById("rsa-output").value =
 		rsaMode === "encrypt"
 			? "ここに暗号化された文字列が表示されます"
 			: "ここに復号された文字列が表示されます";
@@ -386,23 +386,7 @@ function toggleRsaKeyVisibility() {
 	}
 }
 
-function copyToClipboard(elementId) {
-	const text = document.getElementById(elementId).textContent;
-	navigator.clipboard.writeText(text).then(() => {
-		const btns = document.querySelectorAll(".copy-btn");
-		btns.forEach((btn) => {
-			if (btn.getAttribute("onclick").includes(elementId)) {
-				const original = btn.textContent;
-				btn.textContent = "コピーしました!";
-				btn.disabled = true;
-				setTimeout(() => {
-					btn.textContent = original;
-					btn.disabled = false;
-				}, 1200);
-			}
-		});
-	});
-}
+function copyToClipboard(elementId) {}
 
 function processScytale() {
 	const input = document.getElementById("scytale-input").value;
@@ -415,7 +399,7 @@ function processScytale() {
 		result = scytaleDecrypt(input, rows);
 		renderScytaleMatrix(input, rows, false);
 	}
-	document.getElementById("scytale-output").textContent =
+	document.getElementById("scytale-output").value =
 		result ||
 		(scytaleMode === "encrypt"
 			? "ここに暗号化された文字列が表示されます"
@@ -423,45 +407,45 @@ function processScytale() {
 }
 
 function renderScytaleMatrix(text, rows, isEncrypt) {
-	const matrixDiv = document.getElementById("scytale-matrix");
-	matrixDiv.innerHTML = "";
-	if (!text) return;
-	let cols = Math.ceil(text.length / rows);
-	let table = document.createElement("table");
-	table.className = "scytale-table";
-	if (isEncrypt) {
-		// 暗号化時: 行ごとに分割
-		for (let r = 0; r < rows; r++) {
-			let tr = document.createElement("tr");
-			for (let c = 0; c < cols; c++) {
-				let idx = c * rows + r;
-				let td = document.createElement("td");
-				td.textContent = text[idx] ? text[idx] : "";
-				tr.appendChild(td);
-			}
-			table.appendChild(tr);
-		}
-	} else {
-		// 復号時: 列ごとに分割
-		let arr = Array.from({ length: rows }, () => "");
-		let idx = 0;
-		for (let r = 0; r < rows; r++) {
-			let len = cols;
-			if (r >= text.length % rows && text.length % rows !== 0) len--;
-			arr[r] = text.slice(idx, idx + len);
-			idx += len;
-		}
-		for (let r = 0; r < rows; r++) {
-			let tr = document.createElement("tr");
-			for (let c = 0; c < cols; c++) {
-				let td = document.createElement("td");
-				td.textContent = arr[r][c] ? arr[r][c] : "";
-				tr.appendChild(td);
-			}
-			table.appendChild(tr);
-		}
-	}
-	matrixDiv.appendChild(table);
+	// const matrixDiv = document.getElementById("scytale-matrix");
+	// matrixDiv.innerHTML = "";
+	// if (!text) return;
+	// let cols = Math.ceil(text.length / rows);
+	// let table = document.createElement("table");
+	// table.className = "scytale-table";
+	// if (isEncrypt) {
+	// 	// 暗号化時: 行ごとに分割
+	// 	for (let r = 0; r < rows; r++) {
+	// 		let tr = document.createElement("tr");
+	// 		for (let c = 0; c < cols; c++) {
+	// 			let idx = c * rows + r;
+	// 			let td = document.createElement("td");
+	// 			td.textContent = text[idx] ? text[idx] : "";
+	// 			tr.appendChild(td);
+	// 		}
+	// 		table.appendChild(tr);
+	// 	}
+	// } else {
+	// 	// 復号時: 列ごとに分割
+	// 	let arr = Array.from({ length: rows }, () => "");
+	// 	let idx = 0;
+	// 	for (let r = 0; r < rows; r++) {
+	// 		let len = cols;
+	// 		if (r >= text.length % rows && text.length % rows !== 0) len--;
+	// 		arr[r] = text.slice(idx, idx + len);
+	// 		idx += len;
+	// 	}
+	// 	for (let r = 0; r < rows; r++) {
+	// 		let tr = document.createElement("tr");
+	// 		for (let c = 0; c < cols; c++) {
+	// 			let td = document.createElement("td");
+	// 			td.textContent = arr[r][c] ? arr[r][c] : "";
+	// 			tr.appendChild(td);
+	// 		}
+	// 		table.appendChild(tr);
+	// 	}
+	// }
+	// matrixDiv.appendChild(table);
 }
 
 function scytaleEncrypt(text, rows) {
@@ -497,7 +481,7 @@ function scytaleDecrypt(cipher, rows) {
 function resetScytale() {
 	document.getElementById("scytale-input").value = "";
 	document.getElementById("scytale-rows").value = 4;
-	document.getElementById("scytale-output").textContent =
+	document.getElementById("scytale-output").value =
 		scytaleMode === "encrypt"
 			? "ここに暗号化された文字列が表示されます"
 			: "ここに復号された文字列が表示されます";

@@ -40,12 +40,9 @@
                 </div>
             </div>
 
-            <div class="output-section">
+            <div class="input-group">
                 <label id="caesar-output-label">暗号文（暗号化された文字列）:</label>
-                <div class="output-copy-group">
-                    <div id="caesar-output" class="output-text">ここに暗号化された文字列が表示されます</div>
-                    <button class="copy-btn" onclick="copyToClipboard('caesar-output')">コピー</button>
-                </div>
+                <textarea id="caesar-output" class="output-text" readonly placeholder="ここに暗号化された文字列が表示されます" rows="4"></textarea>
             </div>
 
             <div class="example">
@@ -94,12 +91,9 @@
                 <span id="substitution-display">Q W E R T Y U I O P A S D F G H J K L Z X C V B N M</span>
             </div>
 
-            <div class="output-section">
+            <div class="input-group">
                 <label id="substitution-output-label">暗号文（暗号化された文字列）:</label>
-                <div class="output-copy-group">
-                    <div id="substitution-output" class="output-text">ここに暗号化された文字列が表示されます</div>
-                    <button class="copy-btn" onclick="copyToClipboard('substitution-output')">コピー</button>
-                </div>
+                <textarea id="substitution-output" class="output-text" readonly placeholder="ここに暗号化された文字列が表示されます" rows="4"></textarea>
             </div>
 
             <div class="example">
@@ -131,14 +125,13 @@
                     <button class="btn" onclick="resetScytale()">リセット</button>
                 </div>
             </div>
-            <div class="output-section">
-                <label id="scytale-output-label">暗号文（暗号化された文字列）:</label>
-                <div class="output-copy-group">
-                    <div id="scytale-output" class="output-text">ここに暗号化された文字列が表示されます</div>
-                    <button class="copy-btn" onclick="copyToClipboard('scytale-output')">コピー</button>
+            <!-- <div class="output-section"> -->
+                <div class="input-group">
+                    <label id="scytale-output-label">暗号文（暗号化された文字列）:</label>
+                    <textarea id="scytale-output" class="output-text" readonly placeholder="ここに暗号化された文字列が表示されます" rows="4"></textarea>
                 </div>
                 <div id="scytale-matrix" class="scytale-matrix"></div>
-            </div>
+            <!-- </div> -->
             <div class="example">
                 <h3>📝 スキュタレー暗号の仕組み</h3>
                 <p>
@@ -172,12 +165,9 @@
                     <button class="btn" id="toggle-rsa-key-visibility" onclick="toggleRsaKeyVisibility()">表示</button>
                 </div>
             </div>
-            <div class="output-section">
+            <div class="input-group">
                 <label id="rsa-output-label">出力:</label>
-                <div class="output-copy-group">
-                    <div id="rsa-output" class="output-text">ここに結果が表示されます</div>
-                    <button class="copy-btn" onclick="copyToClipboard('rsa-output')">コピー</button>
-                </div>
+                <textarea id="rsa-output" class="output-text" readonly placeholder="ここに結果が表示されます" rows="4"></textarea>
             </div>
             <div class="example">
                 <h3>📝 RSA暗号の仕組み</h3>

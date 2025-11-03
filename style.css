@@ -234,29 +234,7 @@ textarea {
     align-items: center;
     gap: 10px;
 }
-
-.copy-btn {
-    background: #667eea;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.15);
-}
-
-.copy-btn:active {
-    background: #4a56c8;
-    transform: scale(0.97);
-}
-
-.copy-btn:disabled {
-    background: #a0aec0;
-    cursor: not-allowed;
-}
+/* copy-btn styles removed because copy buttons were removed from the HTML */
 
 .scytale-matrix {
     margin-top: 18px;
